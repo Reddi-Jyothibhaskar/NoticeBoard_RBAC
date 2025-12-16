@@ -7,7 +7,8 @@ const authorize = require("../middleware/authorize");
 const {
   createNotice,
   getNotices,
-  approveNotice
+  approveNotice,
+  getPendingNotices
 } = require("../controllers/noticeController");
 
 // Anyone logged in can view approved notices
@@ -28,5 +29,15 @@ router.put(
   authorize(["admin"]),
   approveNotice
 );
+
+//Newly added
+
+router.get(
+  "/pending",
+  authenticate,
+  authorize(["admin"]),
+  getPendingNotices
+);
+
 
 module.exports = router;

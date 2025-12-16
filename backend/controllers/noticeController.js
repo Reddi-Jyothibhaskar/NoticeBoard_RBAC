@@ -24,3 +24,10 @@ exports.approveNotice = async (req, res) => {
   );
   res.json(notice);
 };
+
+//Newly added
+
+exports.getPendingNotices = async (req, res) => {
+  const notices = await Notice.find({ status: "pending" });
+  res.json(notices);
+};
